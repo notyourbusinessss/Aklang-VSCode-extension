@@ -2,17 +2,27 @@
   "name": "aklang",
   "displayName": "Ak language",
   "description": "Syntax highlighting for the Ak programming language (.aklang)",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "notyourbusinessss",
   "license": "Apache-2.0",
-  "engines": { "vscode": "^1.60.0" },
-  "categories": ["Programming Languages"],
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
   "contributes": {
     "languages": [
       {
         "id": "aklang",
-        "aliases": ["Ak", "aklang"],
-        "extensions": [".aklang", ".ak"],
+        "aliases": [
+          "Ak",
+          "aklang"
+        ],
+        "extensions": [
+          ".aklang",
+          ".ak"
+        ],
         "configuration": "./language-configuration.json"
       }
     ],
@@ -22,6 +32,65 @@
         "scopeName": "source.aklang",
         "path": "./syntaxes/aklang.tmLanguage.json"
       }
-    ]
-  }
+    ],
+    "commands": [
+      {
+        "command": "aklang.run",
+        "title": "Ak: Run File",
+        "icon": "$(play)"
+      },
+      {
+        "command": "aklang.check",
+        "title": "Ak: Check File"
+      },
+      {
+        "command": "aklang.test",
+        "title": "Ak: Test File"
+      }
+    ],
+    "menus": {
+      "editor/title/run": [
+        {
+          "command": "aklang.run",
+          "when": "resourceLangId == aklang",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "aklang.run",
+          "when": "editorLangId == aklang"
+        },
+        {
+          "command": "aklang.check",
+          "when": "editorLangId == aklang"
+        },
+        {
+          "command": "aklang.test",
+          "when": "editorLangId == aklang"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "aklang.run",
+        "key": "ctrl+f5",
+        "when": "editorLangId == aklang"
+      }
+    ],
+    "configuration": {
+      "title": "Ak",
+      "properties": {
+        "aklang.path": {
+          "type": "string",
+          "default": "ak",
+          "description": "The ak executable to run. Use a full path (for example ~/.local/bin/ak) when ak is not on your PATH."
+        }
+      }
+    }
+  },
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:aklang"
+  ]
 }
