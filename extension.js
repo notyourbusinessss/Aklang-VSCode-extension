@@ -4,7 +4,7 @@ const vscode = require('vscode');
 // Quote one argument for a POSIX shell (the terminal is bash or zsh in WSL and on Linux/macOS).
 const quote = s => "'" + String(s).replace(/'/g, "'\\''") + "'";
 
-// The shell line for `ak <sub> <path>`: `run` is plain `ak file`; `test` runs the folder when the file is not a *.test.aklang file.
+// The shell line for `ak <sub> <path>`: `run` is plain `ak file`, `check` and `test` add the subcommand.
 function commandLine(ak, sub, file) {
   const base = quote(ak);
   if (sub === 'run') return `${base} ${quote(file)}`;
