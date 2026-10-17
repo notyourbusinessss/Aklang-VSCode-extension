@@ -1,0 +1,27 @@
+{
+  "name": "aklang",
+  "displayName": "Ak language",
+  "description": "Syntax highlighting for the Ak programming language (.aklang)",
+  "version": "0.1.0",
+  "publisher": "notyourbusinessss",
+  "license": "Apache-2.0",
+  "engines": { "vscode": "^1.60.0" },
+  "categories": ["Programming Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "aklang",
+        "aliases": ["Ak", "aklang"],
+        "extensions": [".aklang", ".ak"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "aklang",
+        "scopeName": "source.aklang",
+        "path": "./syntaxes/aklang.tmLanguage.json"
+      }
+    ]
+  }
+}

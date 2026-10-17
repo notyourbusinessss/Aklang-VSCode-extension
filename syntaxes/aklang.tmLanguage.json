@@ -1,0 +1,87 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Ak",
+  "scopeName": "source.aklang",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#string" },
+    { "include": "#function-definition" },
+    { "include": "#number" },
+    { "include": "#constant" },
+    { "include": "#symbol" },
+    { "include": "#special-form" },
+    { "include": "#builtin" },
+    { "include": "#operator" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.semicolon.aklang",
+      "match": ";.*$"
+    },
+    "string": {
+      "name": "string.quoted.double.aklang",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        { "name": "constant.character.escape.aklang", "match": "\\\\." }
+      ]
+    },
+    "function-definition": {
+      "patterns": [
+        {
+          "comment": "(= (name args..) body..)",
+          "match": "(\\()\\s*(=)\\s*(\\()\\s*([A-Za-z_][A-Za-z0-9_]*[?!]?)",
+          "captures": {
+            "2": { "name": "keyword.control.aklang" },
+            "4": { "name": "entity.name.function.aklang" }
+          }
+        },
+        {
+          "comment": "line form: name a b =   (body on the indented lines below)",
+          "match": "^\\s*([A-Za-z_][A-Za-z0-9_]*[?!]?)(?=(\\s+[^\\s=;()\\[\\]{}\"]+(=[^\\s;()\\[\\]{}\"]*)?|\\s+\\.\\.[A-Za-z_]\\w*)*\\s+=\\s*(;.*)?$)",
+          "captures": { "1": { "name": "entity.name.function.aklang" } }
+        }
+      ]
+    },
+    "number": {
+      "patterns": [
+        { "name": "constant.numeric.hex.aklang", "match": "\\b0[xX][0-9a-fA-F_]+n?\\b" },
+        { "name": "constant.numeric.aklang", "match": "(?<![A-Za-z_])\\d[\\d_]*(\\.(?!\\.)[\\d_]+)?([eE][+-]?\\d+)?n?(?![A-Za-z_])" }
+      ]
+    },
+    "constant": {
+      "name": "constant.language.aklang",
+      "match": "(?<![A-Za-z0-9_.])(true|false|nil)(?![A-Za-z0-9_])"
+    },
+    "symbol": {
+      "name": "constant.other.symbol.aklang",
+      "match": "(?<![A-Za-z0-9_]):[A-Za-z_][A-Za-z0-9_]*"
+    },
+    "special-form": {
+      "patterns": [
+        {
+          "comment": "form heads: (? ..) (wh ..) (for ..) ..",
+          "match": "(?<=\\()\\s*(\\?\\?|\\?|:|&&|\\|\\||wh|for|let|sw|try|use|embed|q|<-|=|\\\\)(?=[\\s)])",
+          "captures": { "1": { "name": "keyword.control.aklang" } }
+        },
+        {
+          "comment": "statements written as lines: wh / for / let / sw / try / use / embed",
+          "match": "^\\s*(wh|for|let|sw|try|use|embed)(?=\\s)",
+          "captures": { "1": { "name": "keyword.control.aklang" } }
+        }
+      ]
+    },
+    "builtin": {
+      "name": "support.function.builtin.aklang",
+      "match": "(?<![A-Za-z0-9_.])(abs|sqrt|flr|cel|rnd|int|min|max|sum|rand|sin|cos|tan|asin|acos|atan|atan2|exp|log|log2|log10|pow|cbrt|hypot|sinh|cosh|tanh|sign|bnot|push|pop|enum|set|del|sort|rev|zip|uniq|flat|grp|idx|has|any|all|keys|vals|prs|sub|take|drop|fst|lst|ap|f64|f32|i32|u32|i16|u16|i8|u8|bcat|show|split|join|trim|up|lo|rep|starts|ends|rpt|padl|padr|chr|ord|num|re|match|fmt|p|pr|ep|in|inall|rd|wr|wrx|app|ls|ex|rm|mkdir|mv|isdir|runx|args|env|exit|sh|now|clock|sleep|delay|err|raise|errkind|errdata|assert|sym|mksym|json|unjson|ty|is|ev|imp|isatty|termsize|rawmode|getkey|fdw)(?![A-Za-z0-9_])"
+    },
+    "operator": {
+      "patterns": [
+        { "name": "keyword.operator.arrow.aklang", "match": "=>" },
+        { "name": "keyword.operator.spread.aklang", "match": "\\.\\.\\.?(?=[A-Za-z_(\\[]|=)" },
+        { "name": "keyword.operator.assignment.aklang", "match": "(\\*\\*|//|\\|\\||\\?\\?|[-+*/%])=|<-|(?<![=!<>])=(?![=>])" },
+        { "name": "keyword.operator.aklang", "match": "\\*\\*|//|==|!=|<=|>=|&&|\\|\\||\\?\\?|<<|>>>?|\\.\\.|[-+*/%<>&|^!~#?]" }
+      ]
+    }
+  }
+}
