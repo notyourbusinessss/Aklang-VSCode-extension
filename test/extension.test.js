@@ -6,7 +6,11 @@ const term = { name: 'Ak', show() {}, sendText: s => sent.push(s) };
 const stub = {
   commands: { registerCommand: (id, f) => { cmds[id] = f; return { dispose() {} }; } },
   window: { activeTextEditor: { document: doc }, terminals: [term], createTerminal: () => term, showWarningMessage: m => sent.push('WARN ' + m) },
-  workspace: { getConfiguration: () => ({ get: () => 'ak' }) },
+  languages: { createDiagnosticCollection: () => ({ set() {}, delete() {}, clear() {}, dispose() {} }) },
+  workspace: {
+    textDocuments: [], getConfiguration: () => ({ get: k => k === 'diagnostics' ? 'off' : 'ak' }),
+    onDidOpenTextDocument: () => ({}), onDidChangeTextDocument: () => ({}), onDidSaveTextDocument: () => ({}), onDidCloseTextDocument: () => ({}), onDidChangeConfiguration: () => ({}),
+  },
 };
 const load = Module._load;
 Module._load = (r, ...a) => r === 'vscode' ? stub : load(r, ...a);

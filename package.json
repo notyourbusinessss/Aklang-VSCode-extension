@@ -1,8 +1,8 @@
 {
   "name": "aklang",
   "displayName": "Ak language",
-  "description": "Syntax highlighting for the Ak programming language (.aklang)",
-  "version": "0.2.0",
+  "description": "Syntax highlighting, run/check/test commands and error squiggles for the Ak programming language (.aklang). Needs Ak 0.6.0 or newer for the squiggles and Test File.",
+  "version": "0.3.0",
   "publisher": "notyourbusinessss",
   "license": "Apache-2.0",
   "engines": {
@@ -85,6 +85,21 @@
           "type": "string",
           "default": "ak",
           "description": "The ak executable to run. Use a full path (for example ~/.local/bin/ak) when ak is not on your PATH."
+        },
+        "aklang.diagnostics": {
+          "type": "string",
+          "enum": [
+            "onType",
+            "onSave",
+            "off"
+          ],
+          "default": "onType",
+          "enumDescriptions": [
+            "Check while you type (after a short pause) and on save",
+            "Check when you open or save a file",
+            "No error squiggles"
+          ],
+          "description": "When to run `ak check` to underline errors."
         }
       }
     }
@@ -92,5 +107,8 @@
   "main": "./extension.js",
   "activationEvents": [
     "onLanguage:aklang"
-  ]
+  ],
+  "scripts": {
+    "test": "node test/extension.test.js && node test/check.test.js && node test/diagnostics.test.js"
+  }
 }
