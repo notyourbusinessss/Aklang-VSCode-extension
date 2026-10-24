@@ -6,6 +6,7 @@
     { "include": "#comment" },
     { "include": "#string" },
     { "include": "#function-definition" },
+    { "include": "#use-as" },
     { "include": "#number" },
     { "include": "#constant" },
     { "include": "#symbol" },
@@ -43,6 +44,10 @@
         }
       ]
     },
+    "use-as": {
+      "name": "keyword.control.aklang",
+      "match": "(?<=\\\")\\s*\\bas(?=\\s)"
+    },
     "number": {
       "patterns": [
         { "name": "constant.numeric.hex.aklang", "match": "\\b0[xX][0-9a-fA-F_]+n?\\b" },
@@ -73,7 +78,7 @@
     },
     "builtin": {
       "name": "support.function.builtin.aklang",
-      "match": "(?<![A-Za-z0-9_.])(abs|sqrt|flr|cel|rnd|int|min|max|sum|rand|sin|cos|tan|asin|acos|atan|atan2|exp|log|log2|log10|pow|cbrt|hypot|sinh|cosh|tanh|sign|bnot|push|pop|enum|set|del|sort|rev|zip|uniq|flat|grp|idx|has|any|all|keys|vals|prs|sub|take|drop|fst|lst|ap|f64|f32|i32|u32|i16|u16|i8|u8|bcat|show|split|join|trim|up|lo|rep|starts|ends|rpt|padl|padr|chr|ord|num|re|match|fmt|p|pr|ep|in|inall|rd|wr|wrx|app|ls|ex|rm|mkdir|mv|isdir|runx|args|env|exit|sh|now|clock|sleep|delay|err|raise|errkind|errdata|assert|sym|mksym|json|unjson|ty|is|ev|imp|isatty|termsize|rawmode|getkey|fdw)(?![A-Za-z0-9_])"
+      "match": "(?<![A-Za-z0-9_.])(abs|sqrt|flr|cel|rnd|int|min|max|sum|rand|sin|cos|tan|asin|acos|atan|atan2|exp|log|log2|log10|pow|cbrt|hypot|sinh|cosh|tanh|sign|bnot|push|pop|enum|set|del|sort|rev|zip|uniq|flat|grp|idx|has|any|all|keys|vals|prs|sub|take|drop|fst|lst|ap|f64|f32|i32|u32|i16|u16|i8|u8|bcat|show|split|join|trim|up|lo|rep|starts|ends|rpt|padl|padr|chr|ord|num|re|match|fmt|p|pr|ep|in|inall|rd|wr|wrx|app|ls|ex|rm|mkdir|mv|isdir|runx|args|env|exit|sh|now|clock|sleep|delay|err|errkind|errdata|assert|sym|mksym|json|unjson|ty|is|ev|imp|isatty|termsize|rawmode|getkey|selfexe|symline|symcol|f64bits|raise|co|resume|yield|alive|drain|coclose|cores|shared|par|tcpl|tcpa|tcpc|tcpp|peer|sockname|shutw|shutr|sockopt|dns|rdns|unixl|unixc|udp|udpl|udpto|udpfrom|udpfrom2|fdr|fdw|fdwp|fdc|fdline|fdreadn|fdwait)(?![A-Za-z0-9_])"
     },
     "operator": {
       "patterns": [
