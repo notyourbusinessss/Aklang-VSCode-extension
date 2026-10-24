@@ -1,8 +1,8 @@
 {
   "name": "aklang",
   "displayName": "Ak language",
-  "description": "Syntax highlighting, run/check/test commands and error squiggles for the Ak programming language (.aklang). Needs Ak 0.6.0 or newer for the squiggles and Test File.",
-  "version": "0.3.0",
+  "description": "Syntax highlighting, run/check/test commands and error squiggles for the Ak programming language (.aklang). Needs Ak 0.6.0 or newer for the squiggles and Test File; made for Ak 0.7.31.",
+  "version": "0.4.0",
   "publisher": "notyourbusinessss",
   "license": "Apache-2.0",
   "engines": {
@@ -109,6 +109,6 @@
     "onLanguage:aklang"
   ],
   "scripts": {
-    "test": "node test/extension.test.js && node test/check.test.js && node test/diagnostics.test.js"
+    "test": "node test/extension.test.js && node test/check.test.js && node test/diagnostics.test.js && node test/grammar.test.js"
   }
 }

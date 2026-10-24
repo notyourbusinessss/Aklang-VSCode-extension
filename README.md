@@ -1,10 +1,10 @@
 # Aklang VS Code extension
 
 
-Syntax highlighting for [Ak](https://github.com/notyourbusinessss/AI-codinglanguage-) (`.aklang`, and the old `.ak`): comments, strings, numbers, `:symbols`, `true false nil`, the special forms (`? wh for let sw try use ..`), function definitions and the builtins.
+Syntax highlighting for [Ak](https://github.com/notyourbusinessss/AI-codinglanguage-) (`.aklang`, and the old `.ak`): comments, strings, numbers, `:symbols`, `true false nil`, the special forms (`? wh for let sw try use ..`, and `as` in `(use "f.aklang" as g)`), function definitions and the builtins, including the sockets (`tcpl tcpc fdr fdw fdwait dns udpl ..`), coroutines (`co resume yield`) and parallel workers (`par shared cores`) added up to Ak 0.7.
 
 ## Which Ak it works with
-Tested with Ak **0.6.0** (the current release) and, for the parts that need only older features, Ak 0.5.0.
+Extension 0.4.0 is tested with Ak **0.7.31** (current main, native only; the JavaScript target is gone). Run File, Check File and highlighting were last checked on Ak 0.5.0 and 0.6.0 with extension 0.3.0 and use nothing newer. The highlighting knows the builtins of Ak 0.7.31; on an older Ak the newer names are simply highlighted without being defined.
 
 | feature | needs Ak |
 |---|---|
@@ -35,7 +35,7 @@ Tests: `npm test` (no VS Code needed; the checks run against a fake `ak`). To ru
 In a folder with this extension:
 ```
 npm install -g @vscode/vsce        # once
-vsce package                       # writes aklang-0.3.0.vsix
-code --install-extension aklang-0.3.0.vsix
+vsce package                       # writes aklang-0.4.0.vsix
+code --install-extension aklang-0.4.0.vsix
 ```
-From WSL, run `code --install-extension` in the WSL terminal so it installs into the WSL side. Or copy this folder to `~/.vscode-server/extensions/aklang-0.3.0` and reload the window.
+From WSL, run `code --install-extension` in the WSL terminal so it installs into the WSL side. Or copy this folder to `~/.vscode-server/extensions/aklang-0.4.0` and reload the window.
